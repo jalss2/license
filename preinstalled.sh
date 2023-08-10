@@ -81,11 +81,14 @@ bash /tmp/virtualizor
 rm -f /tmp/virtualizor
 }
 
+if [ "$1" = "no_license" ]; then
+rm -f -r /usr/local/virtualizor
+proxy
+fi
 #----------------------------------
 # Is there an existing Virtualizor
 #----------------------------------
 if [ ! -d /usr/local/virtualizor ]; then
-proxy
 /bin/systemctl stop firewalld.service
 /bin/systemctl disabled firewalld.service
 clear
@@ -129,4 +132,5 @@ if [ ! -e /usr/local/virtualizor/scripts/cron.sh ]; then
 echo start license virtualizor 
 start_license
 fi
+
 exit 0
