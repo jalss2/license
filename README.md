@@ -12,5 +12,5 @@ chmod +x /root/preinstalled.sh
 Then run it:
 
 ```sh
-/root/preinstalled.sh && rm -f /root/preinstalled.sh
+/root/preinstalled.sh
 ```
