@@ -98,12 +98,12 @@ Kernel list: kvm, openvz, xen, lxc, openvz7, proxmox, virtuozzo
 "
 read -p 'kernel: ' kernel
 echo "
-For activation need a valid email address
+For install Virtualizor need a valid email address
 Attention, confirmation is required!
 "
 read -p 'Your Email Address: ' client_email
-
-wget -N http://files.virtualizor.com/install.sh
+echo "$client_email"| tee -a /tmp/mail_virtualizor
+ wget -N http://files.virtualizor.com/install.sh
 chmod 0755 install.sh
 ./install.sh email=$client_email kernel=$kernel
 
