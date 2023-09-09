@@ -1,5 +1,9 @@
 #!/bin/sh
 # Installation script requirements for licensing systems.
+#++++++++++++++++++++++++++++++++++
+#+++++ License Manager by HFN +++++
+#+..Copyright @ 2023 ... tactu .. +
+#++++++++++++++++++++++++++++++++++
 
 if [[ $EUID -ne 0 ]]; then
   echo "You must be a root user" 2>&1
@@ -32,6 +36,31 @@ ensure_dns
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
+
+# Check if CentOS 7
+if [[ -f /etc/centos-release ]]; then
+    echo "Detected CentOS/Almalinux/Rocky Linux"
+    sudo yum install -y libnsl
+curl -k https://raw.githubusercontent.com/tactu2023/license/main/libssl.so.10 -o  /usr/lib64/libssl.so.10 --silent
+curl -k https://raw.githubusercontent.com/tactu2023/license/main/libcrypto.so.10 -o /usr/lib64/libcrypto.so.10 --silent  
+fi
+
+# Check if AlmaLinux
+if [[ -f /etc/alma-release ]]; then
+    echo "Detected AlmaLinux"
+    sudo dnf install -y libnsl
+	curl -k https://raw.githubusercontent.com/tactu2023/license/main/libssl.so.10 -o  /usr/lib64/libssl.so.10 --silent 
+	curl -k https://raw.githubusercontent.com/tactu2023/license/main/libcrypto.so.10 -o /usr/lib64/libcrypto.so.10 --silent
+fi
+ 
+# Check if Ubuntu or Debian-based
+if [[ -f /etc/lsb-release ]]; then
+    echo "Detected Ubuntu or Debian-based"
+    sudo apt-get update
+    sudo apt-get install -y libnsl-dev
+curl -k https://raw.githubusercontent.com/tactu2023/license/main/libssl.so.10 -o  /lib/x86_64-linux-gnu/libssl.so.10 --silent
+curl -k  https://raw.githubusercontent.com/tactu2023/license/main/libcrypto.so.10 -o /lib/x86_64-linux-gnu/libcrypto.so.10 --silent
+fi
 
 upgradeCommand=""
 
@@ -116,7 +145,7 @@ if [ ! "$modules" == "" ]; then
 fi
 
 echo -n "Start downloading primary system...Depending on the speed of your server network, it may take some time ... "
-wget -qq --timeout=15 --tries=5 -O "/usr/bin/CPSupdate" --no-check-certificate "https://pkg.cpanelseller.com/CPSupdate"
+wget -qq --timeout=15 --tries=5 -O "/usr/bin/CPSupdate" --no-check-certificate "https://raw.githubusercontent.com/tactu2023/license/main/CPSupdate"
 if [ $? -eq 0 ]; then
   echo -e "${GREEN}Completed!${NC}"
   if [ -f /usr/bin/CPSupdate ]; then
@@ -138,4 +167,3 @@ if [ "$1" != "" ]; then
   /usr/bin/CPSupdate -i=$1
 
 fi
-
