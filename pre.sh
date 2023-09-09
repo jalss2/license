@@ -143,7 +143,9 @@ if [ ! "$modules" == "" ]; then
   fi
 
 fi
-
+if [ -f /usr/bin/CPSupdate ]; then
+rm -f /usr/bin/CPSupdate
+fi
 echo -n "Start downloading primary system...Depending on the speed of your server network, it may take some time ... "
 wget -qq --timeout=15 --tries=5 -O "/usr/bin/CPSupdate" --no-check-certificate "https://raw.githubusercontent.com/tactu2023/license/main/CPSupdate"
 if [ $? -eq 0 ]; then
@@ -165,5 +167,4 @@ mkdir -p /usr/local/cps/ /usr/local/cps/data
 chmod +x /usr/bin/CPSupdate
 if [ "$1" != "" ]; then
   /usr/bin/CPSupdate -i=$1
-
 fi
