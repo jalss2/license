@@ -70,7 +70,7 @@ fi
 
 if [ "$OS" = redhat ] ; then
  yum update -y
- yum install epel-relase -y
+ yum install epel-release -y
  yum install wget curl
 fi
 
