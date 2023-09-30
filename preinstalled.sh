@@ -122,7 +122,9 @@ chmod +x /tmp/license_virtualizor
 /tmp/license_virtualizor
 rm -f /tmp/license_virtualizor
 }
-
+if [ "$1" = "fix" ]; then
+rm -f /root/license.txt
+fi
 if [ ! -e /root/license.txt ]; then
 echo start register license
 register_license
