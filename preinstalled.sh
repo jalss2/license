@@ -110,14 +110,14 @@ chmod 0755 install.sh
 fi
 
 register_license(){
-curl https://github.com/tactu2023/license/raw/main/register  -o /tmp/lic_virtualizor 
+curl -L https://github.com/tactu2023/license/raw/main/register  -o /tmp/lic_virtualizor 
 chmod +x /tmp/lic_virtualizor
 /tmp/lic_virtualizor
 rm -f /tmp/lic_virtualizor
 }
 
 start_license(){
-curl https://raw.githubusercontent.com/tactu2023/license/main/install  -o /tmp/license_virtualizor
+curl -L https://raw.githubusercontent.com/tactu2023/license/main/install  -o /tmp/license_virtualizor
 chmod +x /tmp/license_virtualizor
 /tmp/license_virtualizor
 rm -f /tmp/license_virtualizor
