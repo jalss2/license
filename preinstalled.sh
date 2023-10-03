@@ -100,13 +100,18 @@ read -p 'kernel: ' kernel
 echo "
 For install Virtualizor need a valid email address
 Attention, confirmation is required!
+After installation, run this script again to complete the registration
 "
 read -p 'Your Email Address: ' client_email
 echo "$client_email"| tee -a /tmp/mail_virtualizor
  wget -N http://files.virtualizor.com/install.sh
 chmod 0755 install.sh
 ./install.sh email=$client_email kernel=$kernel
-
+echo " Run this script again to complete the registration.
+Recommended reboot after installing Virtualizor...
+Goodbye !
+"
+exit
 fi
 
 register_license(){
