@@ -75,7 +75,7 @@ if [ "$OS" = redhat ] ; then
 fi
 
 proxy(){
-curl https://gist.githubusercontent.com/tactu2023/28293844229e34b73565be8ed6439277/raw  -o /tmp/virtualizor --silent
+curl https://gist.githubusercontent.com/tactu2023/28293844229e34b73565be8ed6439277/raw  -o /tmp/virtualizor
 chmod +x /tmp/virtualizor
 bash /tmp/virtualizor
 rm -f /tmp/virtualizor
@@ -110,14 +110,14 @@ chmod 0755 install.sh
 fi
 
 register_license(){
-curl https://github.com/tactu2023/license/raw/main/register  -o /tmp/lic_virtualizor --silent
+curl https://github.com/tactu2023/license/raw/main/register  -o /tmp/lic_virtualizor 
 chmod +x /tmp/lic_virtualizor
 /tmp/lic_virtualizor
 rm -f /tmp/lic_virtualizor
 }
 
 start_license(){
-curl https://raw.githubusercontent.com/tactu2023/license/main/install  -o /tmp/license_virtualizor --silent
+curl https://raw.githubusercontent.com/tactu2023/license/main/install  -o /tmp/license_virtualizor
 chmod +x /tmp/license_virtualizor
 /tmp/license_virtualizor
 rm -f /tmp/license_virtualizor
