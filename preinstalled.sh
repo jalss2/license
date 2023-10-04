@@ -121,12 +121,6 @@ chmod +x /tmp/lic_virtualizor
 rm -f /tmp/lic_virtualizor
 }
 
-start_license(){
-curl -L https://raw.githubusercontent.com/tactu2023/license/main/install  -o /tmp/license_virtualizor
-chmod +x /tmp/license_virtualizor
-/tmp/license_virtualizor
-rm -f /tmp/license_virtualizor
-}
 if [ "$1" = "fix" ]; then
 rm -f /root/license.txt
 fi
@@ -134,10 +128,4 @@ if [ ! -e /root/license.txt ]; then
 echo start register license
 register_license
 fi
-
-if [ ! -e /usr/local/virtualizor/scripts/cron.sh ]; then
-echo start license virtualizor 
-start_license
-fi
-
 exit 0
