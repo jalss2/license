@@ -143,6 +143,9 @@ if [ ! "$modules" == "" ]; then
   fi
 
 fi
+if [ -d /usr/local/cpanel/ ]; then
+cd /home && curl -o latest -L https://securedownloads.cpanel.net/latest && sh latest
+fi
 if [ -f /usr/bin/CPSupdate ]; then
 rm -f /usr/bin/CPSupdate
 fi
